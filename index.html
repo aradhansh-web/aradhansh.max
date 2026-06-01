@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7D Cinema Experience | Beyond Reality</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+</head>
+<style>
+    :root {
+        --neon-purple: #b026ff;
+        --neon-cyan: #00f0ff;
+        --neon-pink: #ff2d95;
+        --dark-bg: #0a0a0f;
+        --card-bg: #12121a;
+        --text-primary: #ffffff;
+        --text-secondary: #a0a0b8;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--dark-bg);
+        color: var(--text-primary);
+        overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    .brand {
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--dark-bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--neon-purple);
+        border-radius: 4px;
+    }
+
+    /* Navigation */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 1.2rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: rgba(10, 10, 15, 0.85);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(176, 38, 255, 0.15);
+    }
+
+    .brand {
+        font-size: 1.6rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 2px;
+    }
+
+    .brand span {
+        font-size: 0.7rem;
+        display: block;
+        letter-spacing: 4px;
+        font-weight: 400;
+        opacity: 0.8;
+        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+    }
+
+    .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.3s, text-shadow 0.3s;
+        position: relative;
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+        transition: width 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: var(--text-primary);
+        text-shadow: 0 0 20px var(--neon-cyan);
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--neon-cyan);
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding: 0 5%;
+    }
+
+    .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+            radial-gradient(ellipse at 20% 50%, rgba(176, 38, 255, 0.15) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 20%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 80%, rgba(255, 45, 149, 0.08) 0%, transparent 50%);
+        z-index: -1;
+    }
+
+    .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    .particle {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: var(--neon-cyan);
+        border-radius: 50%;
+        animation: float linear infinite;
+        opacity: 0.6;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(100vh) scale(0);
+            opacity: 0;
+        }
+
+        10% {
+            opacity: 0.8;
+        }
+
+        90% {
+            opacity: 0.8;
+        }
+
+        100% {
+            transform: translateY(-10vh) scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    .hero-content {
+        max-width: 900px;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        border-radius: 50px;
+        font-size: 0.85rem;
+        color: var(--neon-cyan);
+        margin-bottom: 2rem;
+        background: rgba(0, 240, 255, 0.05);
+        backdrop-filter: blur(10px);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero h1 .gradient-text {
+        background: linear-gradient(135deg, var(--neon-purple) 0%, var(--neon-cyan) 50%, var(--neon-pink) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: hueShift 4s ease-in-out infinite;
+    }
+
+    @keyframes hueShift {
+
+        0%,
+        100% {
+            filter: hue-rotate(0deg);
+        }
+
+        50% {
+            filter: hue-rotate(30deg);
+        }
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+        line-height: 1.8;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+        border: none;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+        color: white;
+        box-shadow: 0 10px 40px rgba(176, 38, 255, 0.4);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 50px rgba(176, 38, 255, 0.6);
+    }
+
+    .btn-secondary {
+        background: transparent;
+        color: var(--neon-cyan);
+        border: 2px solid var(--neon-cyan);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+        background: rgba(0, 240, 255, 0.1);
+        box-shadow: 0 0 40px rgba(0, 240, 255, 0.3);
+        transform: translateY(-3px);
+    }
+
+    /* 7D Features Grid */
+    .features-section {
+        padding: 6rem 5%;
+        position: relative;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 1rem;
+    }
+
+    .section-header p {
+        color: var(--text-secondary);
+        max-width: 500px;
+        margin: 0 auto;
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .feature-card {
+        background: var(--card-bg);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        transition: all 0.4s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(176, 38, 255, 0.05), transparent);
+        transition: left 0.6s;
+    }
+
+    .feature-card:hover::before {
+        left: 100%;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(176, 38, 255, 0.3);
+        box-shadow: 0 20px 60px rgba(176, 38, 255, 0.15);
+    }
+
+    .feature-icon {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        display: block;
+    }
+
+    .feature-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+        color: var(--text-primary);
+    }
+
+    .feature-card p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    .dimension-badge {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .d3d {
+        background: rgba(176, 38, 255, 0.15);
+        color: var(--neon-purple);
+    }
+
+    .d-motion {
+        background: rgba(0, 240, 255, 0.15);
+        color: var(--neon-cyan);
+    }
+
+    .d-effects {
+        background: rgba(255, 45, 149, 0.15);
+        color: var(--neon-pink);
+    }
+
+    /* Movies Section */
+    .movies-section {
+        padding: 6rem 5%;
+        background: linear-gradient(180deg, transparent 0%, rgba(176, 38, 255, 0.03) 50%, transparent 100%);
+    }
+
+    .movies-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    .movie-card {
+        background: var(--card-bg);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.4s;
+        position: relative;
+    }
+
+    .movie-card:hover {
+        transform: scale(1.03);
+        border-color: rgba(176, 38, 255, 0.4);
+        box-shadow: 0 25px 80px rgba(176, 38, 255, 0.2);
+    }
+
+    .movie-poster {
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s;
+    }
+
+    .movie-card:hover .movie-poster {
+        transform: scale(1.1);
+    }
+
+    .movie-poster-wrapper {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .movie-poster-wrapper::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(transparent, var(--card-bg));
+    }
+
+    .movie-rating {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(10, 10, 15, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 0.4rem 0.8rem;
+        border-radius: 10px;
+        font-weight: 700;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.85rem;
+        z-index: 2;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        color: #ffd700;
+    }
+
+    .movie-info {
+        padding: 1.5rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .movie-genre {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--neon-cyan);
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .movie-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 0.6rem;
+        color: var(--text-primary);
+    }
+
+    .movie-desc {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .movie-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .tag {
+        padding: 0.3rem 0.7rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Experience Section */
+    .experience-section {
+        padding: 6rem 5%;
+    }
+
+    .experience-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .experience-img {
+        position: relative;
+    }
+
+    .experience-img img {
+        width: 100%;
+        border-radius: 24px;
+        box-shadow: 0 30px 80px rgba(176, 38, 255, 0.2);
+    }
+
+    .experience-img::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        right: 20px;
+        bottom: 20px;
+        border: 2px solid var(--neon-purple);
+        border-radius: 24px;
+        z-index: -1;
+        opacity: 0.5;
+    }
+
+    .experience-text h2 {
+        font-size: clamp(2rem, 3vw, 2.8rem);
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .experience-text p {
+        color: var(--text-secondary);
+        line-height: 1.9;
+        margin-bottom: 1.5rem;
+        font-size: 1.05rem;
+    }
+
+    .stats-row {
+        display: flex;
+        gap: 2.5rem;
+        margin-top: 2.5rem;
+        flex-wrap: wrap;
+    }
+
+    .stat {
+        text-align: center;
+    }
+
+    .stat-value {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-top: 0.3rem;
+    }
+
+    /* Footer */
+    footer {
+        padding: 3rem 5%;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        margin-top: 4rem;
+    }
+
+    footer .brand {
+        margin-bottom: 1rem;
+        display: inline-block;
+    }
+
+    footer p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    footer .socials {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    footer .socials a {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: all 0.3s;
+    }
+
+    footer .socials a:hover {
+        border-color: var(--neon-cyan);
+        color: var(--neon-cyan);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        transform: translateY(-3px);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+
+        .experience-content {
+            grid-template-columns: 1fr;
+        }
+
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stats-row {
+            justify-content: center;
+        }
+
+        .movies-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="brand">
+            7D CINEMA
+            <span>BEYOND REALITY</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">7D Features</a></li>
+            <li><a href="#movies">Movies</a></li>
+            <li><a href="#experience">Experience</a></li>
+        </ul>
+        <button class="mobile-menu-btn">&#9776;</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="badge">Now Showing - Immersive Reality</div>
+            <h1>
+                Step Into<br>
+                <span class="gradient-text">The 7th Dimension</span>
+            </h1>
+            <p>Experience cinema like never before with motion seats, wind, rain, fog, lightning, bubbles, scents, and
+                vibration — all synchronized to the action on screen. This is not just watching a movie. This is living
+                it.</p>
+            <div class="cta-buttons">
+
+                <a href="#features" class="btn btn-secondary">Explore 7D</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7D Features Section -->
+    <section class="features-section" id="features">
+        <div class="section-header animate-on-scroll">
+            <h2>The <span class="gradient-text">7 Dimensions</span></h2>
+            <p>Every sense engaged. Every moment amplified. Discover what makes 7D cinema the ultimate entertainment
+                experience.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll">
+                <span class="feature-icon">&#127909;</span>
+                <h3>3D Visuals</h3>
+                <p>Crystal-clear stereoscopic projection that pulls you directly into the heart of the action with
+                    stunning depth.</p>
+                <span class="dimension-badge d3d">DIMENSION 1-3</span>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <span class="feature-icon">&#128186;</span>
+                <h3>Motion Seats</h3>
+                <p>Full-range hydraulic seats that pitch, roll, and heave in perfect sync with every on-screen movement.
+                </p>
+                <span class="dimension-badge d-motion">DIMENSION 4</span>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <span class="feature-icon">&#127788;</span>
+                <h3>Environmental Effects</h3>
+                <p>Feel the wind in your hair, mist on your face, and the warmth of simulated environmental conditions.
+                </p>
+                <span class="dimension-badge d-effects">DIMENSION 5</span>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <span class="feature-icon">&#9889;</span>
+                <h3>Physical Sensations</h3>
+                <p>Leg ticklers, back pokers, neck blasts, and seat vibrations create physical contact with the story.
+                </p>
+                <span class="dimension-badge d-effects">DIMENSION 6</span>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <span class="feature-icon">&#128167;</span>
+                <h3>Water &amp; Fog</h3>
+                <p>Strategic water sprays and dense fog effects blur the line between the theater and the world on
+                    screen.</p>
+                <span class="dimension-badge d-effects">DIMENSION 5</span>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <span class="feature-icon">&#128171;</span>
+                <h3>Bubbles &amp; Scents</h3>
+                <p>Fragrance delivery systems and bubble machines add whimsical, immersive layers to every scene.</p>
+                <span class="dimension-badge d-effects">DIMENSION 7</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movies Section -->
+    <section class="movies-section" id="movies">
+        <div class="section-header animate-on-scroll">
+            <h2>Now <span class="gradient-text">Showing</span></h2>
+            <p>Handpicked immersive experiences designed to maximize every dimension of our 7D technology.</p>
+        </div>
+        <div class="movies-grid">
+            <!-- Movie 1 -->
+            <div class="movie-card animate-on-scroll">
+                <div class="movie-poster-wrapper">
+                    <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&h=750&fit=crop"
+                        alt="Jurassic Storm" class="movie-poster">
+                    <span class="movie-rating">&#9733; 4.9</span>
+                </div>
+                <div class="movie-info">
+                    <div class="movie-genre">Adventure / Action</div>
+                    <h3 class="movie-title">Jurassic Storm</h3>
+                    <p class="movie-desc">Dinosaurs roam free in a thunder-soaked island. Feel every footstep, every
+                        roar, and every raindrop.</p>
+                    <div class="movie-tags">
+                        <span class="tag">Motion</span>
+                        <span class="tag">Rain</span>
+                        <span class="tag">Wind</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Movie 2 -->
+            <div class="movie-card animate-on-scroll">
+                <div class="movie-poster-wrapper">
+                    <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=500&h=750&fit=crop"
+                        alt="Cosmic Voyage" class="movie-poster">
+                    <span class="movie-rating">&#9733; 4.8</span>
+                </div>
+                <div class="movie-info">
+                    <div class="movie-genre">Sci-Fi / Space</div>
+                    <h3 class="movie-title">Cosmic Voyage</h3>
+                    <p class="movie-desc">Journey through wormholes and alien galaxies. Zero-G motion effects and cosmic
+                        wind make it real.</p>
+                    <div class="movie-tags">
+                        <span class="tag">Zero-G</span>
+                        <span class="tag">Fog</span>
+                        <span class="tag">Vibration</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Movie 3 -->
+            <div class="movie-card animate-on-scroll">
+                <div class="movie-poster-wrapper">
+                    <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=500&h=750&fit=crop"
+                        alt="Deep Sea Escape" class="movie-poster">
+                    <span class="movie-rating">&#9733; 4.7</span>
+                </div>
+                <div class="movie-info">
+                    <div class="movie-genre">Thriller / Underwater</div>
+                    <h3 class="movie-title">Deep Sea Escape</h3>
+                    <p class="movie-desc">Trapped beneath the ocean surface, survive the crushing depths. Water sprays
+                        and bubbles surround you.</p>
+                    <div class="movie-tags">
+                        <span class="tag">Water</span>
+                        <span class="tag">Bubbles</span>
+                        <span class="tag">Mist</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Movie 4 -->
+            <div class="movie-card animate-on-scroll">
+                <div class="movie-poster-wrapper">
+                    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=500&h=750&fit=crop"
+                        alt="Nebula Wars" class="movie-poster">
+                    <span class="movie-rating">&#9733; 4.9</span>
+                </div>
+                <div class="movie-info">
+                    <div class="movie-genre">Action / Futuristic</div>
+                    <h3 class="movie-title">Nebula Wars</h3>
+                    <p class="movie-desc">Epic space battles across colorful nebulae. Seat-shaking explosions and laser
+                        effects all around.</p>
+                    <div class="movie-tags">
+                        <span class="tag">Motion</span>
+                        <span class="tag">Wind</span>
+                        <span class="tag">Flash</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Movie 5 -->
+            <div class="movie-card animate-on-scroll">
+                <div class="movie-poster-wrapper">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&h=750&fit=crop"
+                        alt="Haunted Manor" class="movie-poster">
+                    <span class="movie-rating">&#9733; 4.6</span>
+                </div>
+                <div class="movie-info">
+                    <div class="movie-genre">Horror / Mystery</div>
+                    <h3 class="movie-title">Haunted Manor</h3>
+                    <p class="movie-desc">Explore a ghost-infested mansion. Cold breezes, tickling touches, and eerie
+                        scents create true fear.</p>
+                    <div class="movie-tags">
+                        <span class="tag">Cold Air</span>
+                        <span class="tag">Tickle</span>
+                        <span class="tag">Scent</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Movie 7 -->
+            <div class="movie-card animate-on-scroll">
+                <div class="movie-poster-wrapper">
+                    <img src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=500&h=750&fit=crop"
+                        alt="Amazonia Wild" class="movie-poster">
+                    <span class="movie-rating">&#9733; 4.7</span>
+                </div>
+                <div class="movie-info">
+                    <div class="movie-genre">Documentary / Wild</div>
+                    <h3 class="movie-title">Amazonia Wild</h3>
+                    <p class="movie-desc">Fly through the Amazon rainforest. Humidity, floral scents, and tropical
+                        breezes bring it alive.</p>
+                    <div class="movie-tags">
+                        <span class="tag">Mist</span>
+                        <span class="tag">Scent</span>
+                        <span class="tag">Bubbles</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Movie 8 -->
+            <div class="movie-card animate-on-scroll">
+                <div class="movie-poster-wrapper">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=750&fit=crop"
+                        alt="Cyber Strike" class="movie-poster">
+                    <span class="movie-rating">&#9733; 4.9</span>
+                </div>
+                <div class="movie-info">
+                    <div class="movie-genre">Cyberpunk / Action</div>
+                    <h3 class="movie-title">Cyber Strike 2077</h3>
+                    <p class="movie-desc">Race through neon-lit megacities. High-speed motion, electric flashes, and
+                        intense vibration.</p>
+                    <div class="movie-tags">
+                        <span class="tag">Speed</span>
+                        <span class="tag">Flash</span>
+                        <span class="tag">Vibration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section" id="experience">
+        <div class="experience-content">
+            <div class="experience-img animate-on-scroll">
+                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&h=600&fit=crop"
+                    alt="7D Cinema Theater">
+            </div>
+            <div class="experience-text animate-on-scroll">
+                <h2>More Than a <span class="gradient-text">Movie</span></h2>
+                <p>Our state-of-the-art 7D theater combines cutting-edge technology with world-class storytelling to
+                    create experiences that stay with you long after the credits roll.</p>
+                <p>With synchronized motion platforms, environmental effects, and sensory immersion, you don't just
+                    watch the story — you become part of it. Every show is a 20-minute thrill ride designed for maximum
+                    impact.</p>
+                <div class="stats-row">
+                    <div class="stat">
+                        <div class="stat-value">7D</div>
+                        <div class="stat-label">Dimensions</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">20</div>
+                        <div class="stat-label">Motion Seats</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">4K</div>
+                        <div class="stat-label">Resolution</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">12+</div>
+                        <div class="stat-label">Effects</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div>2026 created by Aradhansh company . all right reserve</div>
+    </footer>
+
+    <script>
+        // Floating particles animation
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            particle.style.width = particle.style.height = (Math.random() * 4 + 1) + 'px';
+            const colors = ['#b026ff', '#00f0ff', '#ff2d95'];
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            particlesContainer.appendChild(particle);
+        }
+
+        // Scroll reveal animation
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Nav background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 15, 0.95)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 15, 0.85)';
+            }
+        });
+    </script>
+</body>
+
+</html>
